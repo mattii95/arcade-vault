@@ -7,7 +7,7 @@ export function AuthForm() {
   const [tab, setTab] = useState<"in" | "up">("in");
   const router = useRouter();
 
-  const submit = (e: React.FormEvent) => {
+  const submit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     router.push("/");
   };
@@ -63,7 +63,7 @@ export function AuthForm() {
           <button className="btn ghost" type="button">▣&nbsp; GITHUB</button>
         </div>
 
-        <div className="mt-[18px] text-center text-[11px] tracking-widest text-(--ink-faint)">
+        <div className="mt-4.5 text-center text-[11px] tracking-widest text-(--ink-faint)">
           AL ENTRAR ACEPTAS LOS TÉRMINOS DEL SALÓN ARCADE
         </div>
       </div>
