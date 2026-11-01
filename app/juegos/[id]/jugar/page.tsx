@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { GAMES } from "@/lib/data";
 
 export function generateStaticParams() {
   return GAMES.map((g) => ({ id: g.id }));
 }
 
-export default async function GamePlayer({ params }: PageProps<"/juegos/[id]/jugar">) {
+async function GamePlayerContent({ params }: PageProps<"/juegos/[id]/jugar">) {
   const { id } = await params;
   const game = GAMES.find((g) => g.id === id);
   if (!game) notFound();
@@ -56,5 +57,13 @@ export default async function GamePlayer({ params }: PageProps<"/juegos/[id]/jug
         </div>
       </div>
     </div>
+  );
+}
+
+export default function GamePlayer(props: PageProps<"/juegos/[id]/jugar">) {
+  return (
+    <Suspense fallback={null}>
+      <GamePlayerContent {...props} />
+    </Suspense>
   );
 }
