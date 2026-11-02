@@ -1,6 +1,6 @@
 # SPEC 01 — Pantallas visuales del MVP
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** ninguna
 > **Fecha:** 2026-10-27
 > **Objetivo:** Implementar en Next.js, como rutas reales y solo en su parte visual, las 5 pantallas del template `references/templates/` (biblioteca, detalle, reproductor, login y salón de la fama).
