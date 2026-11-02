@@ -7,11 +7,14 @@ import { useState } from "react";
 export function Nav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const active = (name: "biblioteca" | "salon" | "login") =>
-    name === "biblioteca"
-      ? pathname === "/" || pathname.startsWith("/juegos")
-      : pathname === `/${name}`;
-  const cls = (name: "biblioteca" | "salon" | "login") => (active(name) ? "active" : "");
+  type Name = "inicio" | "biblioteca" | "salon" | "login";
+  const active = (name: Name) =>
+    name === "inicio"
+      ? pathname === "/"
+      : name === "biblioteca"
+        ? pathname.startsWith("/juegos")
+        : pathname === `/${name}`;
+  const cls = (name: Name) => (active(name) ? "active" : "");
   const close = () => setOpen(false);
 
   return (
@@ -24,7 +27,8 @@ export function Nav() {
           </div>
         </Link>
         <div className="links">
-          <Link href="/" className={cls("biblioteca")}>Biblioteca</Link>
+          <Link href="/" className={cls("inicio")}>Inicio</Link>
+          <Link href="/juegos" className={cls("biblioteca")}>Biblioteca</Link>
           <Link href="/salon" className={cls("salon")}>Salón de la Fama</Link>
         </div>
         <div className="spacer"></div>
@@ -39,7 +43,8 @@ export function Nav() {
       <div className={"av-mobile-backdrop" + (open ? " open" : "")} onClick={close}></div>
       <aside className={"av-mobile-panel" + (open ? " open" : "")}>
         <div className="pixel neon-cyan mb-4 text-[11px]">MENÚ</div>
-        <Link href="/" className={cls("biblioteca")} onClick={close}>Biblioteca</Link>
+        <Link href="/" className={cls("inicio")} onClick={close}>Inicio</Link>
+        <Link href="/juegos" className={cls("biblioteca")} onClick={close}>Biblioteca</Link>
         <Link href="/salon" className={cls("salon")} onClick={close}>Salón de la Fama</Link>
         <Link href="/login" className={cls("login")} onClick={close}>Iniciar Sesión</Link>
         <div className="flex-1"></div>
